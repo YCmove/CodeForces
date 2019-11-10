@@ -50,7 +50,7 @@ void update(int idx, int val){
     // val == 1 代表 經過就+1
     for(int i = idx; i <= n; i += i&-i){
         bit[i] += val;
-        cout << "bit[i]: " << bit[i] << " / i: " << i << endl;
+        // cout << "bit[i]: " << bit[i] << " / i: " << i << endl;
     }
 }
 
@@ -101,14 +101,14 @@ int main(){
     for(int i = 0; i < q; i++){
         // 題目要問的 v[j].ff > query[i].k
         while(j >= 0 && v[j].ff > query[i].k){
-            cout << "i: " << i << " / j: " << j << endl;
+            // cout << "i: " << i << " / j: " << j << endl;
             // void update(int idx, int val)
             // idx = v[j--].ss is BIT[idx], ss is index
-            cout << "i: " << i << " / j: " << j << " / v[j].ff: " << v[j].ff << " / query[i].k: " << query[i].k << endl;
-            cout << "--- Start Update ---" << endl;
+            // cout << "i: " << i << " / j: " << j << " / v[j].ff: " << v[j].ff << " / query[i].k: " << query[i].k << endl;
+            // cout << "--- Start Update ---" << endl;
             update(v[j--].ss, 1);
         }
-        ans[query[i].o] = qry(query[i].j) - qry(query[i].i -1); // why 減一?
+        ans[query[i].o] = qry(query[i].j) - qry(query[i].i -1); // why 減一? 因為題目詢問的range是 i...j, 包含i and j
     }
 
     for(int i = 0; i < q; i++){
