@@ -6,12 +6,14 @@ Complexity: (N+Q)*Log(N+Q)
 #include <iostream>
 #include <algorithm>
 using namespace std;
+// MYQ: why 262144?
 #define MAXQ 262144
 #define MAX 32768
  
 struct q
 {
-    int s, e, rank; long long k;
+    int s, e, rank;
+    long long k;
 } query[MAXQ+1], ans[MAXQ+1];
  
 static int tree[MAX+1], N, Q;
@@ -41,15 +43,21 @@ int main()
 {
     ios::sync_with_stdio(0);
  
+    // read in sequence of origin numbers
     cin >> N;
-    for (int i=1; i <= N; ++i){
-        cin >> query[i].k; query[i].e=i;
+    for (int i = 1; i <= N; ++i){
+        cin >> query[i].k; // origin value
+        query[i].e = i; // origin order
     }
+
+    // read in queries
     cin >> Q;
     for (int i = N+1; i <= N+Q; ++i){
+        // s:start, e:end, k:k value(greater than k)
         cin >> query[i].s >> query[i].e >> query[i].k;
         query[i].rank=N-i;
     }
+
     sort(query+1, query+N+Q+1, cmp);
     
     int temp=1;
