@@ -2,6 +2,8 @@
 /*
 Algo: Segment Tree
 Complexity: N*LogN
+
+
 */
 
 #include <cstdio>
@@ -20,7 +22,8 @@ inline void build(int x, int y, int n){
         st[n].l=st[n].r=A[x]; return;
     }
     int mid=(x+y)>>1;
-    build(x, mid, 2*n+1); build(mid+1, y, 2*n+2);
+    build(x, mid, 2*n+1);
+    build(mid+1, y, 2*n+2);
     st[n].l=st[2*n+1].l; st[n].r=st[2*n+2].r;
 }
 
@@ -31,7 +34,8 @@ inline void update(int x, int y, int n){
         st[n].v= K; return;
     }
     int mid=(x+y)>>1;
-    update(x, mid, 2*n+1); update(mid+1, y, 2*n+2);
+    update(x, mid, 2*n+1);
+    update(mid+1, y, 2*n+2);
 }
 
 inline void query(int x, int y, int n, int v){
@@ -43,7 +47,8 @@ inline void query(int x, int y, int n, int v){
     int mid=(x+y)>>1, v1, v2;
     v1=(st[2*n+1].v==0 || st[2*n+1].v<v)? v: st[2*n+1].v;
     v2=(st[2*n+2].v==0 || st[2*n+2].v<v)? v: st[2*n+2].v;
-    query(x, mid, 2*n+1, v1); query(mid+1, y, 2*n+2, v2);
+    query(x, mid, 2*n+1, v1);
+    query(mid+1, y, 2*n+2, v2);
 }
 
 int main()
@@ -61,14 +66,19 @@ int main()
             if(!chk[Q[i].l-1]){A[++idx]=Q[i].l-1; chk[Q[i].l-1]=1;}
             if(!chk[Q[i].r-1]){A[++idx]=Q[i].r-1; chk[Q[i].r-1]=1;}
         }
-        sort(A+1, A+idx+1); build(1, idx, 1);
+        sort(A+1, A+idx+1);
+        build(1, idx, 1);
 
-        chk.clear(); chk[0]=1;
+        chk.clear();
+        chk[0]=1;
+
         for(int i=1; i<=N; ++i){
             qs=Q[i].l; qe=Q[i].r; K+=1;
             update(1, idx, 1);
         }
+
         query(1, idx, 1, st[1].v);
+
         printf("%d\n", vec.size());
         vec.clear();
     }

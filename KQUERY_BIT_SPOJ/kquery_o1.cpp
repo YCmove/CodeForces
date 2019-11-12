@@ -1,4 +1,9 @@
 // https://github.com/gabrielrussoc/competitive-programming/blob/master/spoj/kquery.cpp
+/**
+Line 1: n (1 ≤ n ≤ 30000).
+Line 2: n numbers a1, a2, ..., an (1 ≤ ai ≤ 109).
+Line 3: q (1 ≤ q ≤ 200000), the number of k- queries.
+**/
 #include <bits/stdc++.h>
 #define ff first
 #define ss second
