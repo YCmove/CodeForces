@@ -39,16 +39,21 @@ int main(){
     p: 3 / q: 2
     p: 3 / q: 1
     p: 3 / q: 0
+
+    利用p, q 可以組合出Substring的切割方式
     ***/
     for(int p = 1; p <= n; p++){
-        int allowed(n + 1);
+        int allowed(n + 1); // allow是 這個substring的長度, 用來檢查max上限
         minNumber[p] = n + 1;
 
         for(int q = p - 1; q >= 0; q--){
             cout << "p: " << p << " / q: " << q << endl;
 
+            // length 代表substring的長度
             long length = p - q;
+
             // s 為讀入的string (要傳出去的text)
+            // 檢查每一個字母s[q]能夠出現的次數
             allowed = (allowed < a[s[q] - 'a']) ? allowed : a[s[q] - 'a'];
 
             if(length > allowed){
