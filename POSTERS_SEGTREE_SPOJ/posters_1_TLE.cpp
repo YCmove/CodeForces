@@ -10,6 +10,13 @@ bitset<50000005> segtree;
 
 
 
+void shift(int ND){
+	if(lazy[ND]){
+		lazy[NND] = lazy[NND + 1] = lazy[ND];
+    }
+	lazy[ND] = 0;
+}
+
 // update(1, 1, 10000000, vec[ii].ff, vec[ii].ss);
 void update(int ND, int BEG, int END, int i, int j){
         // cout << "Start Update BEG: " << BEG << ", END: " << END << '\n';
@@ -17,11 +24,14 @@ void update(int ND, int BEG, int END, int i, int j){
         return;
     }
 
-    if (BEG == END){
+    // if (BEG == END){
+    if (BEG == i && END == j){
         // cout << "this area is covered. BEG: " << BEG << ", END: " << END << '\n';
         segtree[ND] = 0;
         return;
     }
+
+    
 
     if (j <= MID) {
         // left subtree
