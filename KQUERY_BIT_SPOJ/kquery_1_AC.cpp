@@ -5,7 +5,6 @@ using namespace std;
 #define lowbit(x) ((x)&(-x))
 #define ff first
 #define ss second
-#define _ ios_base::sync_with_stdio(false);cin.tie(NULL);
 
 // global variable for BIT
 #define MAXN 30004
@@ -26,14 +25,14 @@ template<class T> void print_pair(T & p, int n){
     for (int i = 0; i < n; ++i){
         cout << p[i].ff << " ";
     }
-    cout << endl;
+    cout << '\n';
 }
 
 template<class T> void print_query(T & q, int n){
     for (int i = 0; i < n; ++i){
         cout << q[i].k << " ";
     }
-    cout << endl;
+    cout << '\n';
 }
 
 bool comp(q_elem a, q_elem b){
@@ -48,7 +47,7 @@ void update(int idx, int val){
     // default val is always 1
     while(idx <= n_num){
         BIT[idx] += val;
-        // cout << "BIT[idx]: " << BIT[idx] << " / idx: " << idx << endl;
+        // cout << "BIT[idx]: " << BIT[idx] << " / idx: " << idx << '\n';
         idx += lowbit(idx);
     }
 }
@@ -65,6 +64,8 @@ int qry(int idx){
 
 
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     int num;
     cin >> n_num;
     if (n_num == 0){
@@ -102,8 +103,8 @@ int main(){
         // 在此若使用if會黃金交叉....
         while (j >=0 && nums[j].ff > query[i].k){
             // Build BIT
-            // cout << "i: " << i << " / j: " << j << " / nums[j].ff: " << nums[j].ff << " / query[i].k: " << query[i].k << endl;
-            // cout << "--- Start Update ---" << endl;
+            // cout << "i: " << i << " / j: " << j << " / nums[j].ff: " << nums[j].ff << " / query[i].k: " << query[i].k << '\n';
+            // cout << "--- Start Update ---" << '\n';
             update(nums[j].ss, 1);
             j -= 1;
         }
@@ -113,7 +114,7 @@ int main(){
 
     // print ans
     for (int i = 0; i < n_qry; i++){
-        cout << ans[i] << endl;
+        cout << ans[i] << '\n';
     }
 
     return 0;

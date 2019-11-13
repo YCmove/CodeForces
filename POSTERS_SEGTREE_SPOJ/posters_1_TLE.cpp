@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define _ iso_base::sync_with_stdio(false);cin.tie(NULL);
 
 #define ll long long
 #define ff first
@@ -13,28 +12,28 @@ bitset<50000005> segtree;
 
 // update(1, 1, 10000000, vec[ii].ff, vec[ii].ss);
 void update(int ND, int BEG, int END, int i, int j){
-        // cout << "Start Update BEG: " << BEG << ", END: " << END << endl;
+        // cout << "Start Update BEG: " << BEG << ", END: " << END << '\n';
     if (j < BEG || i > END || i > j){
         return;
     }
 
     if (BEG == END){
-        // cout << "this area is covered. BEG: " << BEG << ", END: " << END << endl;
+        // cout << "this area is covered. BEG: " << BEG << ", END: " << END << '\n';
         segtree[ND] = 0;
         return;
     }
 
     if (j <= MID) {
         // left subtree
-        // cout << "Update Left tree" << endl;
+        // cout << "Update Left tree" << '\n';
         update(NND, BEG, MID, i, j);
 
     } else if (i > MID) {
         // right subtree
-        // cout << "Update Right tree" << endl;
+        // cout << "Update Right tree" << '\n';
         update(NND+1, MID+1, END, i, j);
     } else {
-        // cout << "Update Both tree" << endl;
+        // cout << "Update Both tree" << '\n';
         update(NND, BEG, MID, i, j);
         update(NND+1, MID+1, END, i, j);
     }
@@ -74,8 +73,11 @@ bool query(int ND, int BEG, int END, int i, int j){
 
 
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     int tc;
     cin >> tc;
+    if (!tc) return 0;
     while(tc--){ // 沒有test case 計數 ith 問題, 直接while-- 即可
         int n_poster;
         int ans = 0;
@@ -91,14 +93,14 @@ int main(){
         }
 
         for (int ii = n_poster-1; ii > -1;--ii){
-            // cout << "Now running (" << vec[ii].ff << ", " << vec[ii].ss << ")" << endl;
+            // cout << "Now running (" << vec[ii].ff << ", " << vec[ii].ss << ")" << '\n';
             if (query(1, 1, 10000000, vec[ii].ff, vec[ii].ss)){
                 ans ++;
                 update(1, 1, 10000000, vec[ii].ff, vec[ii].ss);
             }
         }
 
-        cout << ans << endl;
+        cout << ans << '\n';
     }
     return 0;
 }
