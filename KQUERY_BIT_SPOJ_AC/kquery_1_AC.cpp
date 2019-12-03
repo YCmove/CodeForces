@@ -9,6 +9,7 @@ using namespace std;
 // global variable for BIT
 #define MAXN 30004
 #define MAXQ 200007
+
 int n_num, n_qry, ans[MAXQ];
 int BIT[MAXN];
 pair<int, int> nums[MAXN];
