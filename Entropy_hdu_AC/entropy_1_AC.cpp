@@ -21,9 +21,29 @@ The optimal encoding therefore requires only 51 bits compared to the 144 that wo
 
 */
 
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include <cstdio>
+#include <iomanip>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+#include <string>
+#include <functional>
+#include <iostream>
+#include <queue>
+#include <vector>
+#define SIZE 27
+#define rep(i, n) for (int i=0; i<n; ++i)
 using namespace std;
 
+
+template<typename T> void print_queue(T& q) {
+    while(!q.empty()) {
+        cout << q.top() << " ";
+        q.pop();
+    }
+    cout << endl;
+}
 
 int main(){
     string s;
@@ -31,16 +51,62 @@ int main(){
     while(cin >> s){
         if (s == "END") return 0;
         // cout << s << '\n';
+        int freq[SIZE];
+        memset(freq, 0, sizeof(freq)); 
 
-        for (auto itr : s){
+        // for (auto itr : s){
             // cout << itr << ' ';
+        for (int i = 0; i < (int)s.size(); i++) {
+            if (s[i] == '_'){
+                freq[26] += 1;
+            } else {
+                freq[s[i] - 'A'] += 1;
+            }
         }
 
+        // priority_queue<int> pq;
+        priority_queue<int, vector<int>, greater<int> > pq;
+        rep(i, SIZE){
+            if (freq[i] > 0) {
+                // cout << "freq[i] = " << freq[i] << ", ";
+                pq.push(freq[i]);
+            }
+        }
+
+        // cout << "\n";
+        // print_queue(pq);
+        // continue;
+
+        int sum = 0;
+        // int n1, n2;
+        // cout << "1. pq.size() = " << pq.size() << '\n';
+        while (pq.size() > 1){
+            int n1 = pq.top();
+            pq.pop();
+            int n2 = pq.top();
+            pq.pop();
+            // 記得還要放回去！！
+            pq.push(n1+n2);
+            sum += (n1+n2);
+            // if (pq.size() != 1){
+            //     sum += (n1+n2);
+            //     cout << "pq.size()=" << pq.size() << ", n1=" << n1 << ", n2=" << n2 << ", sum=" << sum <<'\n' << "=========\n";
+            // }
+        }
+        if (sum == 0){
+            // n = pq.top();
+            sum = s.size();
+        }
+
+        
 
         // output the length in bits of the 8-bit ASCII encoding
         // the length in bits of an optimal prefix-free variable-length encoding
         // the compression ratio accurate to one decimal point.
 
+        // 居然是 printf.......
+        printf("%d %d %.1lf\n", (int)s.size() * 8, sum, ((s.size() * 8.0)/(sum * 1.0)));
+        // cout << s.size()*8 << ' ' << sum << ' ' <<  setprecision(2)  << s.size()*8.0 / sum*1.0 << '\n';
 
     }
 
