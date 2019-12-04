@@ -1,0 +1,1 @@
+# [Entropy - HDU](http://acm.hdu.edu.cn/showproblem.php?pid=1053)
