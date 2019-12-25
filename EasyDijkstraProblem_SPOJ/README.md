@@ -1,0 +1,2 @@
+[EZDIJKST - Easy Dijkstra Problem](https://www.spoj.com/problems/EZDIJKST/cstart=50)
+[AC Solution](https://github.com/AliOsm/CompetitiveProgramming/blob/master/SPOJ/EZDIJKST%20-%20Easy%20Dijkstra%20Problem.cpp)
