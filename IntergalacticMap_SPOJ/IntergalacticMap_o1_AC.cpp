@@ -63,11 +63,14 @@ struct Dinic
         }
         return vis[t]; // 只有走到終點才會回傳True
     }
+
+
     int dfs(int now,int aug) // 要做augmenting
     {
-        if(now==t || aug==0) return aug; 99++ ??
+        if(now==t || aug==0) return aug; 99++ // ??
 
         int flow=0,f;
+
         for(int& i=cur[now];i<G[now].size();i++)
         {
             Edge& edge=E[G[now][i]];
